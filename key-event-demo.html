@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<script>
+        function callFn(events) {
+            console.log(events)
+            let list = ["India", "Indonesia", "America"];
+            let options = "<option>Select the country</option>";
+            	list.forEach(countryName => {
+            		if(countryName.startsWith(events.key)) {
+            			options += `<option>${countryName}</option>`;
+            		}
+            	});
+
+            	let countryOptionsObj = document.getElementById("country");
+            	countryOptionsObj.innerHTML = options;
+            	countryOptionsObj.addEventListener('change', (events) => {
+    				console.log(events);
+    				console.log(countryOptionsObj.value);
+				});
+
+
+            if(events.key === 'i' || events.key === 'I') {
+            	document.getElementById("outputBox").value = "India";
+            } else {
+            	document.getElementById("outputBox").value = "";
+            }
+        }
+    </script>
+	</head>
+	<body>
+		<div>
+			<input type="text" name="demoBox" id="demoBox" onkeydown="callFn(event)">
+			<input type="text" name="outputBox" id="outputBox">
+		</div>
+
+		<div>
+			<select name="country" id="country">
+				<option>Select the country</option>
+			</select>
+		</div>
+		<script>
+			let demoBoxObj = document.getElementById("demoBox");
+			demoBoxObj.addEventListener("keypress", (events) => {
+				console.log(events);
+			});
+			demoBoxObj.addEventListener("keyup", (events) => {
+				console.log(events);
+			});
+			demoBoxObj.addEventListener("keydown", (events) => {
+				console.log(events);
+			});
+			demoBoxObj.addEventListener("mouseover", (events) => {
+				console.log(events);
+			});
+		</script>
+	</body>
+</html>
