@@ -1,0 +1,47 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="orange" style="padding: 50px; background: orange;">
+      Grandparent
+      <div id="blue" style="padding: 50px; background: dodgerblue;">
+        Parent
+        <div id="yellow" style="padding: 50px; background: yellow;">
+          Child (Click Me)
+        </div>
+      </div>
+    </div>
+
+    <div id="log" style="margin-top: 20px; font-family: monospace; border: 1px solid #ccc; padding: 10px;">
+      <b>Event Log:</b><br>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function handleEvent(e) {
+          // e.currentTarget = The element currently "feeling" the click
+          // e.eventPhase = 1 (Capturing), 2 (Target), 3 (Bubbling)
+
+          //e.stopPropagation();
+          
+          const phaseName = e.eventPhase === 1 ? "CAPTURING ⬇️" : "BUBBLING 🫧";
+          const message = `${phaseName}: Handled by ${e.currentTarget.id}`;
+          
+          console.log(message);
+          log.innerHTML += message + "<br>";
+        }
+
+        // We attach TWO listeners to every element to see the full "U-Turn"
+        const divs = document.querySelectorAll('div');
+
+        divs.forEach(div => {
+          // 1. Listen for the Capturing Phase (Downwards)
+          div.addEventListener('click', handleEvent, { capture: true });
+          
+          // 2. Listen for the Bubbling Phase (Upwards)
+          div.addEventListener('click', handleEvent, { capture: false });
+        });
+    </script>
+  </body>
+</html>
