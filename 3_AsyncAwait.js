@@ -4,7 +4,7 @@ const checkAtmBalance = () => {
         let isServerUp = Math.random() > 0.5;
         setTimeout(() => {
             isServerUp ? resolve("$5000") : reject("Bank Down");
-        }, 2000);
+        }, 5000);
     });
 };
 
@@ -25,3 +25,37 @@ async function showBalanceApp() {
 }
 
 showBalanceApp();
+showBalanceApp();
+
+
+const anyCallBackFn = function() {
+    console.log("Any Call Back Function is calling...");
+}
+
+const newPromise = new Promise( (resolve, reject) => {
+    console.log("Promise is calling");
+    resolve("Success");
+});
+
+setTimeout(anyCallBackFn, 3000);
+
+
+--------------------------
+
+console.log("Start");
+
+setTimeout(() => console.log("Timeout"), 0);
+
+async function asyncFunc() {
+  console.log("Async");
+  await Promise.resolve();
+  console.log("Await");
+}
+
+asyncFunc();
+console.log("End");
+
+
+
+
+

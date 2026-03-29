@@ -40,7 +40,7 @@ fetchData(callBackFn);
 
 let step3Fn = () => {
     console.log("Step 2"); 
-    
+
     setTimeout(() => {
         console.log("Step 3"); 
     }, 1000);
@@ -53,6 +53,56 @@ let step2Fn = () => {
 
 setTimeout(step2Fn, 1000);
 
+list.stream()
+    .filter(data -> data != null)
+    .filter(data -> data.equalsIgnoreCase("India"))
+    .map(String::toUpperCase)
+.toList();
+
+
+
+ class Promise {
+
+    Promise then(callback) {
+        var result = callback();
+
+        return new Promise( (resolve, reject) => result);
+    }
+
+    Promise catch(callback) {
+        var result = callback();
+
+        return new Promise( (resolve, reject) => result);
+    }
+
+ }
+
+
+ const promise = new Promise( (resolve, reject) => {
+    //resolve("Success");
+    reject("Failure");
+ } );
+const catchPromise = promise.catch( () => {console.log("CATCH IS FROM FAILURE")});
+
+ const thenPromise = promise.then( () => {console.log("THEN IS FROM SUCCESS")});
+
+ 
+
+ catchPromise.then( () => console.log("Exception details are: ")).catch()
+
+
+
+
+promise
+    .then((result) => {
+        console.log(result); // Task completed!
+    })
+    .catch((error) => {
+        console.error(error); // Task failed! });
+    })
+    .catch((error) => {
+        console.error(error); 
+    });
 
 
 
